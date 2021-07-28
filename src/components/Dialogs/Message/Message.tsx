@@ -11,10 +11,7 @@ const Message = (props: messagePropsType) => {
     return (
         <div>
             <div className={classes.dialog}>{props.message.message}</div>
-
         </div>
     )
 }
-
-
-export default Message
+export default Message;

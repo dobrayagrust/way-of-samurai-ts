@@ -13,7 +13,10 @@ import {RootStateType} from "./redux/state";
 
 type AppPropsType = {
     state: RootStateType;
-
+    addPostCallback: (postText: string) => void
+    changeNewTextCallback: (newText: string) => void
+    newMessageTextCallback: (messageText: string) => void
+    sendMessageCallback: (messageText: string) => void
 }
 
 const App = (props: AppPropsType) => {
@@ -22,8 +25,14 @@ const App = (props: AppPropsType) => {
             <Header/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
-                <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}/>}/>
-                <Route path='/dialogs' render={() => <Dialogs messagesPage={props.state.dialogsPage}/>}/>
+                <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}
+                                                              addPostCallback={props.addPostCallback}
+                                                              changeNewTextCallback={props.changeNewTextCallback}/>}/>
+
+                <Route path='/dialogs' render={() => <Dialogs messagesPage={props.state.dialogsPage}
+                                                              sendMessageCallback={props.sendMessageCallback}
+                                                              newMessageTextCallback={props.newMessageTextCallback}/>}/>
+
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>

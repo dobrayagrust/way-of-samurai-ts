@@ -1,14 +1,13 @@
-import React from "react";
+import React, {KeyboardEvent} from "react";
 import classes from "./Dialogs.module.css";
-// import {NavLink} from 'react-router-dom';
 import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/message";
+import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/state";
 
 type dialogsPropsType = {
     messagesPage: DialogsPageType;
-
-
+    sendMessageCallback: (messagesText: string) => void;
+    newMessageTextCallback: (messagesText: string) => void;
 }
 
 const Dialogs = (props: dialogsPropsType) => {
@@ -18,6 +17,21 @@ const Dialogs = (props: dialogsPropsType) => {
     let messagesElements = props.messagesPage.messages.map(message => <Message
         message={message}/>);
 
+    let newMessageElement = React.createRef<HTMLTextAreaElement>();
+
+    const sendMessage = () => {
+        if (newMessageElement.current) {
+            const value = newMessageElement.current.value
+            props.sendMessageCallback(value)
+            newMessageElement.current.value = ""
+
+        }
+    }
+    const onKeyPressEnter = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter")
+            sendMessage()
+    }
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItem}>
@@ -25,6 +39,15 @@ const Dialogs = (props: dialogsPropsType) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
+            </div>
+            <div>
+                <textarea ref={newMessageElement}
+                          placeholder={"Add message..."}
+                          onKeyPress={onKeyPressEnter}
+                />
+            </div>
+            <div>
+                <button onClick={sendMessage}></button>
             </div>
         </div>
     );
