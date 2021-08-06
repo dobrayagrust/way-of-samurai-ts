@@ -8,15 +8,17 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Route} from "react-router-dom";
-import {RootStateType} from "./redux/state";
+import {ActionsTypes, RootStateType, store, StoreType} from "./redux/state";
 
 
-type AppPropsType = {
-    state: RootStateType;
-    addPostCallback: (postText: string) => void
-    changeNewTextCallback: (newText: string) => void
-    newMessageTextCallback: (messageText: string) => void
-    sendMessageCallback: (messageText: string) => void
+export type AppPropsType = {
+    state: RootStateType
+
+    // addPostCallback: (postText: string) => void
+    // changeNewTextCallback: (newText: string) => void
+    // newMessageTextCallback: (messageText: string) => void
+    // sendMessageCallback: (messageText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const App = (props: AppPropsType) => {
@@ -26,12 +28,14 @@ const App = (props: AppPropsType) => {
             <Navbar/>
             <div className={"app-wrapper-content"}>
                 <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}
-                                                              addPostCallback={props.addPostCallback}
-                                                              changeNewTextCallback={props.changeNewTextCallback}/>}/>
+                                                              dispatch={props.dispatch}
+ /*                                                             addPostCallback={props.addPostCallback.bind(store)}
+                                                              changeNewTextCallback={props.changeNewTextCallback.bind(store)}*//>}/>
 
                 <Route path='/dialogs' render={() => <Dialogs messagesPage={props.state.dialogsPage}
-                                                              sendMessageCallback={props.sendMessageCallback}
-                                                              newMessageTextCallback={props.newMessageTextCallback}/>}/>
+                                                              dispatch={props.dispatch}
+/*                                                              sendMessageCallback={props.sendMessageCallback}
+                                                              newMessageTextCallback={props.newMessageTextCallback}*//>}/>
 
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>

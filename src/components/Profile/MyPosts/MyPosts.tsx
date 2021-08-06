@@ -1,13 +1,15 @@
-import React, {KeyboardEvent} from "react";
-import "./MyPosts.module.css";
+import React, {ChangeEvent, KeyboardEvent} from "react";
 import Post from "./Post/Post";
-import {PostsType} from "../../../redux/state";
+import {ActionsTypes, PostsType, store} from "../../../redux/state";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    addPostCallback: (postText: string) => void
-    changeNewTextCallback: (newText: string) => void
+    // addPostCallback: (postText: string) => void
+    // changeNewTextCallback: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
+
 }
+
 
 const MyPosts = (props: MyPostsPropsType) => {
     let postsElements =
@@ -18,16 +20,20 @@ const MyPosts = (props: MyPostsPropsType) => {
             />
         );
 
+    const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    const addPost = () => {
+        // if(newPostElement.current) {
+        //     const text = newPostElement.current.value
+        //     props.addPostCallback(text)
+        //     newPostElement.current.value = ""
+        // }
+        props.dispatch({type: 'ADD-POST'})
+    }
 
-    let addPost = () => {
-
-        if(newPostElement.current) {
-            const text = newPostElement.current.value
-            props.addPostCallback(text)
-            newPostElement.current.value = ""
-        }
+    const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        const newText = event.currentTarget.value
+        props.dispatch({type: 'CHANGE-NEW-POST-TEXT', newText})
     }
 
     const onKeyPressEnter = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -44,6 +50,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                          ref={newPostElement}
                          placeholder={"Add post..."}
                          onKeyPress={onKeyPressEnter}
+                         onChange={changeHandler}
                      />
                 </div>
                 <div>

@@ -3,21 +3,25 @@ import "./Profile.module.css"
 import classes from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ProfilePageType} from "../../redux/state";
+import {ActionsTypes, ProfilePageType} from "../../redux/state";
 
 type profilePropsType = {
     profilePage: ProfilePageType;
-    addPostCallback: (postText: string) => void
-    changeNewTextCallback: (newText: string) => void
+    // addPostCallback: (postText: string) => void
+    // changeNewTextCallback: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
+
+
 
 const Profile = (props: profilePropsType) => {
     return (
         <div className={classes.content}>
             <ProfileInfo/>
             <MyPosts posts={props.profilePage.posts}
-                     addPostCallback={props.addPostCallback}
-                     changeNewTextCallback={props.changeNewTextCallback}
+                     dispatch={props.dispatch}
+/*                     addPostCallback={props.addPostCallback}
+                     changeNewTextCallback={props.changeNewTextCallback}*/
             />
         </div>
     );

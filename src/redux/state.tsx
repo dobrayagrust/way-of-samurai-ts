@@ -1,5 +1,4 @@
 import {v1} from "uuid"
-import {renderThree} from "../index";
 
 export type MessageType = {
     id: string;
@@ -40,7 +39,56 @@ export type RootStateType = {
     sidebar: SidebarType;
 }
 
-let store = {
+export type StoreType = {
+    _state: RootStateType
+    // newPostText: (newText: string) => void
+    // addPost: (postText: string) => void
+    _renderThree: (state: RootStateType) => void
+    subscribe: (callback: (state: RootStateType) => void) => void
+    getState: () => RootStateType
+    // newMessageText: (messageText: string) => void
+    // sendMessage: (messageText: string) => void
+    dispatch: (action: ActionsTypes) => void
+
+}
+export type ActionsTypes = AddPostActionType | NewTextPostType | SendMessageType | NewMessageType
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+type NewTextPostType = {
+    type: 'CHANGE-NEW-POST-TEXT'
+    newText: string
+}
+
+type SendMessageType = {
+    type: 'SEND-MESSAGE'
+}
+
+type NewMessageType = {
+    type: 'NEW-MESSAGE-TYPE'
+    messageText: string
+}
+
+/*const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'CHANGE-NEW-TEXT'
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}*/
+
+/*
+export const updateChangeNewTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT , newText: text
+    }
+}
+*/
+
+export const store: StoreType = {
     _state: {
         profilePage: {
             messageForNewPost: "",
@@ -77,14 +125,14 @@ let store = {
             ],
         }
     },
-    getState() {
 
+    getState() {
         return this._state
     },
     _renderThree() {
         console.log("State changed")
     },
-    addPost(postText: string) {
+    /*addPost(postText: string) {
         debugger
         const newPost: PostsType = {
             id: v1(),
@@ -93,12 +141,12 @@ let store = {
         }
         this._state.profilePage.posts.push(newPost);
         // state.profilePage.messageForNewPost = ""
-        renderThree(this._state);
-        console.log(newPost)
+        this._renderThree(this._state);
+        // console.log(newPost)
     },
-    changeNewText(newText: string) {
-        this._state.profilePage.messageForNewPost = newText
-        renderThree(this._state);
+    newPostText(postText: string) {
+        this._state.profilePage.messageForNewPost = postText
+        this._renderThree(this._state);
     },
     sendMessage(messageText: string) {
         const newMessage: MessageType = {
@@ -106,15 +154,44 @@ let store = {
             message: messageText,
         }
         this._state.dialogsPage.messages.push(newMessage);
-        renderThree(this._state);
-        console.log(newMessage)
+        this._renderThree(this._state)
+        // console.log(newMessage)
     },
     newMessageText(messageText: string) {
         this._state.dialogsPage.textForNewMessage = messageText
-        renderThree(this._state);
+        this._renderThree(this._state)
+    },*/
+    subscribe(callback) {
+        this._renderThree = callback
     },
-    subscribe(observer: any) {
-        this._renderThree = observer
+    dispatch(action: ActionsTypes) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostsType = {
+                id: v1(),
+                message: this._state.profilePage.messageForNewPost,
+                likesCount: 7,
+            }
+            if (this._state.profilePage.messageForNewPost.length !== 0) {
+                this._state.profilePage.posts.push(newPost);
+                this._renderThree(this._state)
+            }
+        } else if
+        (action.type === 'CHANGE-NEW-POST-TEXT') {
+            this._state.profilePage.messageForNewPost = action.newText
+            this._renderThree(this._state)
+        } else if
+        (action.type === 'SEND-MESSAGE') {
+            const newMessage: MessageType = {
+                id: v1(),
+                message: this._state.dialogsPage.textForNewMessage,
+            }
+            this._state.dialogsPage.messages.push(newMessage);
+            this._renderThree(this._state)
+        } else if
+        (action.type === 'NEW-MESSAGE-TYPE') {
+            this._state.dialogsPage.textForNewMessage = action.messageText
+            this._renderThree(this._state)
+        }
     }
 }
 
@@ -189,5 +266,5 @@ export const newMessageText = (messageText: string) => {
     state.dialogsPage.textForNewMessage = messageText
     renderThree(state);
 }*/
-export default store;
+// export default store;
 

@@ -8,6 +8,8 @@ type postType = {
     likesCount: number
 }
 
+
+
 const Post = (props: postType) => {
     return (
         <div className={classes.item}>
