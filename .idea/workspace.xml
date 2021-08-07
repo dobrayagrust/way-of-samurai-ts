@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="924050af-2f33-46fe-85e1-f18432564c3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/MyPosts/Post/Post.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/Post/Post.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/state.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,9 +26,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="1v1LutbY2hDpXas14b5Mstv70iQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -46,6 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.last.introduce.type" value="CONST" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -86,6 +80,8 @@
       <workItem from="1627477958579" duration="2747000" />
       <workItem from="1627491097003" duration="20000" />
       <workItem from="1628233571901" duration="20182000" />
+      <workItem from="1628277171772" duration="2868000" />
+      <workItem from="1628356272497" duration="6398000" />
     </task>
     <servers />
   </component>

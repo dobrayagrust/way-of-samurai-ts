@@ -51,42 +51,55 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 
 }
-export type ActionsTypes = AddPostActionType | NewTextPostType | SendMessageType | NewMessageType
+export type ActionsTypes = AddPostActionType | NewPostTextType | SendMessageType | NewMessageType
+
+const ADD_POST = 'ADD-POST'
+const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
+const SEND_TEXT_MESSAGE = 'SEND-TEXT-MESSAGE'
+const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT'
 
 type AddPostActionType = {
     type: 'ADD-POST'
 }
 
-type NewTextPostType = {
+type NewPostTextType = {
     type: 'CHANGE-NEW-POST-TEXT'
     newText: string
 }
 
 type SendMessageType = {
-    type: 'SEND-MESSAGE'
+    type: 'SEND-TEXT-MESSAGE'
+    // newMessage: string
 }
 
 type NewMessageType = {
-    type: 'NEW-MESSAGE-TYPE'
+    type: 'NEW-MESSAGE-TEXT'
     messageText: string
 }
 
-/*const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'CHANGE-NEW-TEXT'
-
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (): AddPostActionType => {
     return {
-        type: ADD_POST
-    }
-}*/
-
-/*
-export const updateChangeNewTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT , newText: text
+        type: 'ADD-POST'
     }
 }
-*/
+
+export const changeNewPostTextActionCreator = (text: string): NewPostTextType => {
+    return {
+        type: 'CHANGE-NEW-POST-TEXT',
+        newText: text
+    }
+}
+export const sendTextMessageActionCreator = (): SendMessageType => {
+    return {
+        type: 'SEND-TEXT-MESSAGE'
+    }
+}
+export const newMessageTextActionCreator = (messageText: string): NewMessageType => {
+    return {
+        type: 'NEW-MESSAGE-TEXT',
+        messageText: messageText
+    }
+}
 
 export const store: StoreType = {
     _state: {
@@ -165,7 +178,7 @@ export const store: StoreType = {
         this._renderThree = callback
     },
     dispatch(action: ActionsTypes) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostsType = {
                 id: v1(),
                 message: this._state.profilePage.messageForNewPost,
@@ -176,11 +189,11 @@ export const store: StoreType = {
                 this._renderThree(this._state)
             }
         } else if
-        (action.type === 'CHANGE-NEW-POST-TEXT') {
+        (action.type === CHANGE_NEW_POST_TEXT) {
             this._state.profilePage.messageForNewPost = action.newText
             this._renderThree(this._state)
         } else if
-        (action.type === 'SEND-MESSAGE') {
+        (action.type === SEND_TEXT_MESSAGE) {
             const newMessage: MessageType = {
                 id: v1(),
                 message: this._state.dialogsPage.textForNewMessage,
@@ -188,7 +201,8 @@ export const store: StoreType = {
             this._state.dialogsPage.messages.push(newMessage);
             this._renderThree(this._state)
         } else if
-        (action.type === 'NEW-MESSAGE-TYPE') {
+        (action.type === NEW_MESSAGE_TEXT) {
+            // this._state.dialogsPage.textForNewMessage = action.messageText
             this._state.dialogsPage.textForNewMessage = action.messageText
             this._renderThree(this._state)
         }

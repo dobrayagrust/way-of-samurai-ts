@@ -2,7 +2,12 @@ import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionsTypes, DialogsPageType} from "../../redux/state";
+import {
+    ActionsTypes,
+    DialogsPageType,
+    newMessageTextActionCreator,
+    sendTextMessageActionCreator
+} from "../../redux/state";
 
 type dialogsPropsType = {
     messagesPage: DialogsPageType
@@ -22,7 +27,8 @@ const Dialogs = (props: dialogsPropsType) => {
     const newMessageElement = React.createRef<HTMLTextAreaElement>();
 
     const sendMessage = () => {
-        props.dispatch({type: 'SEND-MESSAGE'})
+        // props.dispatch({type: 'SEND-TEXT-MESSAGE'})
+        props.dispatch(sendTextMessageActionCreator())
         /*        if (newMessageElement.current) {
                     const text = newMessageElement.current.value
                     props.sendMessageCallback(text)
@@ -32,7 +38,7 @@ const Dialogs = (props: dialogsPropsType) => {
 
     const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const messageText = event.currentTarget.value
-        props.dispatch({type: "NEW-MESSAGE-TYPE", messageText})
+        props.dispatch(newMessageTextActionCreator(messageText))
     }
     const onKeyPressEnter = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter")
