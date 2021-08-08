@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="924050af-2f33-46fe-85e1-f18432564c3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/redux/dialogspage_reducer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/profilepage_reducer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/sidebar_reducer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
@@ -25,6 +28,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1v1LutbY2hDpXas14b5Mstv70iQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -82,6 +88,8 @@
       <workItem from="1628233571901" duration="20182000" />
       <workItem from="1628277171772" duration="2868000" />
       <workItem from="1628356272497" duration="6398000" />
+      <workItem from="1628363301980" duration="699000" />
+      <workItem from="1628446563259" duration="3137000" />
     </task>
     <servers />
   </component>

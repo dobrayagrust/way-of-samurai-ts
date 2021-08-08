@@ -2,10 +2,13 @@ import React, {ChangeEvent, KeyboardEvent} from "react";
 import Post from "./Post/Post";
 import {
     ActionsTypes,
-    addPostActionCreator,
-    changeNewPostTextActionCreator,
+
     PostsType,
 } from "../../../redux/state";
+import {
+    addPostActionCreator,
+    changeNewPostTextActionCreator,
+} from "../../../redux/profilepage_reducer";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>

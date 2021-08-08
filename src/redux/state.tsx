@@ -1,4 +1,6 @@
 import {v1} from "uuid"
+import profilePageReducer, {AddPostActionType, NewPostTextType} from "./profilepage_reducer";
+import dialogsPageReducer, {NewMessageType, SendMessageType} from "./dialogspage_reducer";
 
 export type MessageType = {
     id: string;
@@ -53,12 +55,12 @@ export type StoreType = {
 }
 export type ActionsTypes = AddPostActionType | NewPostTextType | SendMessageType | NewMessageType
 
-const ADD_POST = 'ADD-POST'
+/*const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
 const SEND_TEXT_MESSAGE = 'SEND-TEXT-MESSAGE'
-const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT'
+const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT'*/
 
-type AddPostActionType = {
+/*type AddPostActionType = {
     type: 'ADD-POST'
 }
 
@@ -75,9 +77,9 @@ type SendMessageType = {
 type NewMessageType = {
     type: 'NEW-MESSAGE-TEXT'
     messageText: string
-}
+}*/
 
-export const addPostActionCreator = (): AddPostActionType => {
+/*export const addPostActionCreator = (): AddPostActionType => {
     return {
         type: 'ADD-POST'
     }
@@ -99,7 +101,7 @@ export const newMessageTextActionCreator = (messageText: string): NewMessageType
         type: 'NEW-MESSAGE-TEXT',
         messageText: messageText
     }
-}
+}*/
 
 export const store: StoreType = {
     _state: {
@@ -178,34 +180,40 @@ export const store: StoreType = {
         this._renderThree = callback
     },
     dispatch(action: ActionsTypes) {
-        if (action.type === ADD_POST) {
-            const newPost: PostsType = {
-                id: v1(),
-                message: this._state.profilePage.messageForNewPost,
-                likesCount: 7,
-            }
-            if (this._state.profilePage.messageForNewPost.length !== 0) {
-                this._state.profilePage.posts.push(newPost);
-                this._renderThree(this._state)
-            }
-        } else if
-        (action.type === CHANGE_NEW_POST_TEXT) {
-            this._state.profilePage.messageForNewPost = action.newText
-            this._renderThree(this._state)
-        } else if
-        (action.type === SEND_TEXT_MESSAGE) {
-            const newMessage: MessageType = {
-                id: v1(),
-                message: this._state.dialogsPage.textForNewMessage,
-            }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._renderThree(this._state)
-        } else if
-        (action.type === NEW_MESSAGE_TEXT) {
-            // this._state.dialogsPage.textForNewMessage = action.messageText
-            this._state.dialogsPage.textForNewMessage = action.messageText
-            this._renderThree(this._state)
-        }
+
+        profilePageReducer(this._state.profilePage, action)
+        dialogsPageReducer(this._state.dialogsPage, action)
+        // sidebarReducer(this._state.sidebar, action)
+        this._renderThree(this._state)
+
+        /*        if (action.type === ADD_POST) {
+                    const newPost: PostsType = {
+                        id: v1(),
+                        message: this._state.profilePage.messageForNewPost,
+                        likesCount: 7,
+                    }
+                    if (this._state.profilePage.messageForNewPost.length !== 0) {
+                        this._state.profilePage.posts.push(newPost);
+                        this._renderThree(this._state)
+                    }
+                } else if
+                (action.type === CHANGE_NEW_POST_TEXT) {
+                    this._state.profilePage.messageForNewPost = action.newText
+                    this._renderThree(this._state)
+                } else if
+                (action.type === SEND_TEXT_MESSAGE) {
+                    const newMessage: MessageType = {
+                        id: v1(),
+                        message: this._state.dialogsPage.textForNewMessage,
+                    }
+                    this._state.dialogsPage.messages.push(newMessage);
+                    this._renderThree(this._state)
+                } else if
+                (action.type === NEW_MESSAGE_TEXT) {
+                    // this._state.dialogsPage.textForNewMessage = action.messageText
+                    this._state.dialogsPage.textForNewMessage = action.messageText
+                    this._renderThree(this._state)
+                }*/
     }
 }
 
