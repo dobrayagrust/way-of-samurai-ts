@@ -4,7 +4,7 @@ import {
     ActionsTypes,
 
     PostsType,
-} from "../../../redux/state";
+} from "../../../redux/store";
 import {
     addPostActionCreator,
     changeNewPostTextActionCreator,

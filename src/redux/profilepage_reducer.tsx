@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {ActionsTypes, MessageType, PostsType, RootStateType} from "./state";
+import {ActionsTypes, MessageType, PostsType, ProfilePageType, RootStateType} from "./store";
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
@@ -14,7 +14,22 @@ export type NewPostTextType = {
 }
 
 
-const profilePageReducer = (state: any, action: ActionsTypes) => {
+export type InitialStateType = {
+    messageForNewPost: string
+    posts: Array<PostsType>
+}
+
+const initialState: InitialStateType = {
+    messageForNewPost: "",
+    posts: [
+        {id: v1(), message: "My first post", likesCount: 10},
+        {id: v1(), message: "How are you", likesCount: 33},
+        {id: v1(), message: "My two post", likesCount: 11},
+        {id: v1(), message: "My three post", likesCount: 999},
+    ],
+}
+
+const profileReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostsType = {
@@ -63,4 +78,4 @@ export const changeNewPostTextActionCreator = (text: string): NewPostTextType =>
     }
 }
 
-export default profilePageReducer
+export default profileReducer

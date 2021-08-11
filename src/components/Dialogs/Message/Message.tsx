@@ -1,4 +1,4 @@
-import {MessageType} from "../../../redux/state";
+import {MessageType} from "../../../redux/store";
 import classes from "../Dialogs.module.css";
 import React from "react";
 

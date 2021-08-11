@@ -1,5 +1,5 @@
 import {v1} from "uuid"
-import profilePageReducer, {AddPostActionType, NewPostTextType} from "./profilepage_reducer";
+import profilePageReducer, {AddPostActionType, InitialStateType, NewPostTextType} from "./profilepage_reducer";
 import dialogsPageReducer, {NewMessageType, SendMessageType} from "./dialogspage_reducer";
 
 export type MessageType = {

@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 import {
     ActionsTypes,
     DialogsPageType,
-} from "../../redux/state";
+} from "../../redux/store";
 import {
     newMessageTextActionCreator,
     sendTextMessageActionCreator,
